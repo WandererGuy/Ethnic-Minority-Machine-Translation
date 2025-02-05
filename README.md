@@ -1,0 +1,74 @@
+target: Vietnamese
+source: Khmer 
+
+usage:
+create_env.sh
+run-all-no-bpe.sh
+translate.sh
+
+
+
+
+(dont need to read this anymore) prepare env:
+env_1 (before train)
+    pip install khmer-nltk
+    pip install underthesea
+    pip install nltk
+    pip install numpy==1.25.0
+
+
+env_2(train)
+    dont need anymore: (build OpenMNT)
+        !wget https://github.com/OpenNMT/OpenNMT-py/archive/refs/tags/2.3.0.tar.gz
+        !tar -zxvf 2.3.0.tar.gz
+        !mv OpenNMT-py-2.3.0 OpenNMT-py
+
+    to use CLI command for OpenNMT-py
+        %cd OpenNMT-py
+        !pip install -e .
+
+    dont need anymore:
+        !pip install OpenNMT-py==2.3.0
+
+
+
+
+- things I change w.r.t original OpenNMT:
+    to enable training from pretrain<br>
+    in OpenNMT-py/onmt/models/model_saver.py change (to bypass security safe)
+
+    ```
+    def load_checkpoint(ckpt_path):
+
+        import torch
+        from onmt.inputters.text_dataset import TextMultiField
+
+        # Add TextMultiField to the allowed safe globals
+        torch.serialization.add_safe_globals([TextMultiField])
+        """Load checkpoint from `ckpt_path` if any else return `None`."""
+        checkpoint = None
+        if ckpt_path:
+            logger.info('Loading checkpoint from %s' % ckpt_path)
+            checkpoint = torch.load(ckpt_path,
+                                    map_location=lambda storage, loc: storage, weights_only=False)
+        return checkpoint
+    ```
+
+
+    to enable translate from checkpoint <br>
+    in OpenNMT-py/onmt/model_builder.py add in line 81 (to bypass security safe)
+
+    ```
+    def load_test_model(opt, model_path=None):
+        import torch
+        from onmt.inputters.text_dataset import TextMultiField
+
+        # Add TextMultiField to the allowed safe globals
+        torch.serialization.add_safe_globals([TextMultiField])
+
+        if model_path is None:
+            model_path = opt.models[0]
+        checkpoint = torch.load(model_path,
+                                map_location=lambda storage, loc: storage, weights_only=False)
+    ```
+
