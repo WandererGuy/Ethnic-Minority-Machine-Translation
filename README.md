@@ -1,39 +1,47 @@
+# usage: translate between any 2 language using OpenNMY with little customized tokenizer
 target: Vietnamese
 source: Khmer 
 
-usage:
-create_env.sh
-run-all-no-bpe.sh
-translate.sh
+# usage: run this bash file in order
+```
+bash create_env.sh
+```
+```
+bash run-all-no-bpe.sh
+```
+```
+bash translate.sh
+```
 
 
-
-
+# can skip this part (it explain what i extra did to get the code run)
 (dont need to read this anymore) prepare env:
 env_1 (before train)
+    ```
     pip install khmer-nltk
     pip install underthesea
     pip install nltk
     pip install numpy==1.25.0
-
+    ```
 
 env_2(train)
-    dont need anymore: (build OpenMNT)
+    dont need anymore cause I integrate into source code already: (build OpenMNT)
+    ```
         !wget https://github.com/OpenNMT/OpenNMT-py/archive/refs/tags/2.3.0.tar.gz
         !tar -zxvf 2.3.0.tar.gz
         !mv OpenNMT-py-2.3.0 OpenNMT-py
-
+    ```
     to use CLI command for OpenNMT-py
         %cd OpenNMT-py
         !pip install -e .
-
-    dont need anymore:
+    ```
+    dont need this:
         !pip install OpenNMT-py==2.3.0
+    ```
 
 
 
-
-- things I change w.r.t original OpenNMT:
+things I change w.r.t original OpenNMT:
     to enable training from pretrain<br>
     in OpenNMT-py/onmt/models/model_saver.py change (to bypass security safe)
 
