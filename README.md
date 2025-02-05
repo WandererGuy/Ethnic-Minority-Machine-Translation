@@ -1,5 +1,5 @@
 # usage: translate between any 2 language using OpenNMY with little customized tokenizer
-target: Vietnamese
+target: Vietnamese<br>
 source: Khmer 
 
 # usage: run this bash file in order
