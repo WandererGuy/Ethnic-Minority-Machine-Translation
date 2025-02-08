@@ -3,8 +3,8 @@ target: Vietnamese<br>
 source: Khmer <br>
 with result: <br>
 no bpe tokenize (better than bpe) -> Khmer to Vietnamese -> train_acc : 70%, val_acc: 39% <br>
-Experiment more (no bpe tokenize) -> Khmer to English -> train_acc : 90%, val_acc : 63%
-optimal solution : Khmer -> English -> Vietnamese
+Experiment more (no bpe tokenize) -> Khmer to English -> train_acc : 90%, val_acc : 63% <br>
+future solution : Khmer -> English -> Vietnamese (english to vietnam using MTeT repo)
 # usage: run this bash file in order
 ```
 bash create_env.sh
