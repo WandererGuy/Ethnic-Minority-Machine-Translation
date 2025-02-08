@@ -10,4 +10,4 @@ echo "Activating second conda environment: $SECOND_CONDA_ENV_PATH"
 conda activate "$SECOND_CONDA_ENV_PATH"
 
 onmt_build_vocab -config khmer-viet-no-bpe.yaml -n_sample 10000
-onmt_train -config khmer-viet-no-bpe.yaml -verbose
+onmt_train -config khmer-viet-no-bpe.yaml -verbose -train_from models/run2/model_step_136000.pt

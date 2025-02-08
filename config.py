@@ -1,7 +1,7 @@
 
 
 
-def write_train_config():
+def write_train_no_bpe_config():
     config = """# data-no-bpe.yaml
 
     ## Where the samples will be written
@@ -31,8 +31,8 @@ def write_train_config():
 
     # Where to save the checkpoints
     save_model: models/run2/model
-    save_checkpoint_steps: 1000
-    train_steps: 60000
+    save_checkpoint_steps: 10000
+    train_steps: 240000
     valid_steps: 1000
 
     # Model
@@ -88,8 +88,8 @@ def write_train_bpe_config():
 
     # Where to save the checkpoints
     save_model: models/run/model
-    save_checkpoint_steps: 1000
-    train_steps: 60000
+    save_checkpoint_steps: 10000
+    train_steps: 240000
     valid_steps: 1000
 
     # Model
@@ -114,7 +114,7 @@ def write_train_bpe_config():
         f.write(config)
 
 if __name__ == "__main__":
-    write_train_config()
+    write_train_no_bpe_config()
     write_train_bpe_config()
     import os   
     import time 

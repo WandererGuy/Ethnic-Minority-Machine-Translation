@@ -8,4 +8,4 @@ SECOND_CONDA_ENV_PATH="$(pwd)/env_2"
 echo "Activating second conda environment: $SECOND_CONDA_ENV_PATH"
 conda activate "$SECOND_CONDA_ENV_PATH"
 
-onmt_translate -model models/run2/model_step_60000.pt -src data/fake-src-test-token.txt -output data/pred_no_bpe.txt -verbose -gpu 0 | tee data/translate.log
+onmt_translate -model models/run2/model_step_120000.pt -src data/fake-src-test-token.txt -output data/pred_no_bpe.txt -verbose -gpu 0 | tee data/translate.log

@@ -54,10 +54,10 @@ def extract(path):
                     last_step = step 
     return train_dict, val_dict
 
-train_dict, val_dict = extract(path = './output_log/train.log')
+train_dict, val_dict = extract(path = './output_log/kh-en-train-no-bpe.log')
 from tensorboardX import SummaryWriter
 #SummaryWriter encapsulates everything
-writer = SummaryWriter('./runs/exp-1')
+writer = SummaryWriter('./runs/kh-en-train-no-bpe.log')
 for step, acc in train_dict.items():
     writer.add_scalar('acc_train', acc, step)
 
