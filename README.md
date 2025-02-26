@@ -7,6 +7,8 @@ Experiment more (no bpe tokenize) -> Khmer to English -> train_acc : 90%, val_ac
 future solution : Khmer -> English -> Vietnamese (english to vietnam using MTeT repo)
 
 converge at epoch 120k-140k
+# medium post
+https://medium.com/@manhtech264/neural-machine-translation-between-any-2-languages-part-1-74980f50e3a6
 
 # prepare 
 make a folder ./data
