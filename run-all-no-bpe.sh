@@ -13,7 +13,7 @@ conda activate "$FIRST_CONDA_ENV_PATH"
 
 # Run your Python scripts with delays
 echo "Running check_prepare.py..."
-python 1_check_prepare.py
+python 1_3_check_prepare.py
 
 echo "Sleeping for 2 seconds..."
 sleep 2
@@ -54,7 +54,7 @@ python 8_create_sample_translate.py
 
 echo "Sleeping for 4 seconds..."
 sleep 4
-bash 9_translate-no-bpe.sh
+bash 9_0_translate-no-bpe.sh
 
 echo "Sleeping for 4 seconds..."
 sleep 4

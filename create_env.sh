@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 value=$(cat config/config_conda.txt)
 
 echo "Sourcing conda.sh to enable 'conda activate'..."

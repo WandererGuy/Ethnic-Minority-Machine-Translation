@@ -1,51 +1,38 @@
-from khmernltk import word_tokenize
+import subprocess
 
 
-def tokenize_line(line):
-    '''
-    args: line (raw text)
-    return: new_res (tokenized text)
-    progress:
-    - tokenize/subword into a list of tokens/subwords
-    - make sure each token separate by space (openNMT input standard)
-    - and token contains space in between , replace space with _
-    '''
-    line = line.strip()
-    res = word_tokenize(line, return_tokens=True)
-    new_res = []
-    for token in res:
-        if token.strip() == '': continue
-        new_token = token.replace(' ', '_')
-        new_res.append(new_token)
-    new_res = " ".join(new_res)
-    return new_res
-
+def tokenize_file(input_file, output_file):
+    model_name = "source"
+    command = ["spm_encode",
+                f"--model={model_name}.model",
+                "--input", input_file, 
+                "--output", output_file]
+    print (" ".join(command))
+    # Running the subprocess with the provided command
+    result = subprocess.run(command, capture_output=True, text=True)
 
 src_train = open('./data/src-train.txt', mode='r', encoding='utf8')
 src_val = open('./data/src-val.txt', mode='r', encoding='utf8')
 src_test = open('./data/src-test.txt', mode='r', encoding='utf8')
 
-src_train_token = open('./data/src-train-token.txt', mode='w+', encoding='utf8')
-src_val_token = open('./data/src-val-token.txt', mode='w+', encoding='utf8')
-src_test_token = open('./data/src-test-token.txt', mode='w+', encoding='utf8')
+# src_train_token = open('./data/src-train-token.txt', mode='w+', encoding='utf8')
+# src_val_token = open('./data/src-val-token.txt', mode='w+', encoding='utf8')
+# src_test_token = open('./data/src-test-token.txt', mode='w+', encoding='utf8')
 
+tokenize_file('./data/src-train.txt', './data/src-train-token.txt')
+tokenize_file('./data/src-val.txt', './data/src-val-token.txt')
+tokenize_file('./data/src-test.txt', './data/src-test-token.txt')
 
 n = 0
 for line in src_train:
-    src_train_token.write(tokenize_line(line) + "\n")
     n+=1
-print('Số lượng câu trong tập huấn luyện nguồn là ', n)
-
+print('Số lượng câu trong tập huấn luyện đích là ', n)
 n = 0
 for line in src_val:
-    src_val_token.write(tokenize_line(line) + "\n")
     n+=1
-print('Số lượng câu trong tập thẩm định nguồn là ', n)
-
+print('Số lượng câu trong tập thẩm định đích là ', n)
 n = 0
 for line in src_test:
-    src_test_token.write(tokenize_line(line) + "\n")
     n+=1
-print('Số lượng câu trong tập kiểm tra nguồn là ', n)
-
+print('Số lượng câu trong tập kiểm tra đích là ', n)
 print("Tokenize sucess")

@@ -10,7 +10,7 @@ converge at epoch 120k-140k
 
 # prepare 
 make a folder ./data
-put file ./data/target_source.txt 
+put training target source file into ./data/target_source.txt 
 # usage: run this bash file in order
 ```
 bash create_env.sh

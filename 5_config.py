@@ -1,8 +1,13 @@
+from datetime import datetime
 
+# Get current date and time
+current_time = datetime.now()
 
+# Format the timestamp to include year, month, date, hour, and minute
+timestamp = current_time.strftime("%Y-%m-%d %H:%M")
 
 def write_train_no_bpe_config():
-    config = """# data-no-bpe.yaml
+    config = f"""# data-no-bpe.yaml
 
     ## Where the samples will be written
     save_data: data/run2/example
@@ -30,7 +35,7 @@ def write_train_no_bpe_config():
     gpu_ranks: [0]
 
     # Where to save the checkpoints
-    save_model: models/run2/model
+    save_model: models/{timestamp}/model
     save_checkpoint_steps: 10000
     train_steps: 130000
     valid_steps: 1000
@@ -59,7 +64,7 @@ def write_train_no_bpe_config():
 
 
 def write_train_bpe_config():
-    config = """# khmer-viet.yaml
+    config = f"""# khmer-viet.yaml
 
     ## Where the samples will be written
     save_data: data/run/example
@@ -87,7 +92,7 @@ def write_train_bpe_config():
     gpu_ranks: [0]
 
     # Where to save the checkpoints
-    save_model: models/run/model
+    save_model: models/{timestamp}/model
     save_checkpoint_steps: 10000
     train_steps: 130000
     valid_steps: 1000
