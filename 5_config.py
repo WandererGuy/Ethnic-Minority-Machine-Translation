@@ -4,16 +4,16 @@ from datetime import datetime
 current_time = datetime.now()
 
 # Format the timestamp to include year, month, date, hour, and minute
-timestamp = current_time.strftime("%Y-%m-%d %H:%M")
+timestamp = current_time.strftime("%Y-%m-%d-%H-%M")
 
 def write_train_no_bpe_config():
     config = f"""# data-no-bpe.yaml
 
     ## Where the samples will be written
-    save_data: data/run2/example
+    save_data: data/{timestamp}/example
     ## Where the vocab(s) will be written
-    src_vocab: data/run2/example.vocab.src
-    tgt_vocab: data/run2/example.vocab.tgt
+    src_vocab: data/{timestamp}/example.vocab.src
+    tgt_vocab: data/{timestamp}/example.vocab.tgt
     # Prevent overwriting existing files in the folder
     overwrite: True
 
@@ -27,8 +27,8 @@ def write_train_no_bpe_config():
             path_tgt: data/tgt-val-token.txt
 
     # Vocabulary files that were just created
-    src_vocab: models/run2/example.vocab.src
-    tgt_vocab: models/run2/example.vocab.tgt
+    src_vocab: models/{timestamp}/example.vocab.src
+    tgt_vocab: models/{timestamp}/example.vocab.tgt
 
     # Train on a single GPU
     world_size: 1
@@ -67,10 +67,10 @@ def write_train_bpe_config():
     config = f"""# khmer-viet.yaml
 
     ## Where the samples will be written
-    save_data: data/run/example
+    save_data: data/{timestamp}/example
     ## Where the vocab(s) will be written
-    src_vocab: data/run/example.vocab.src
-    tgt_vocab: data/run/example.vocab.tgt
+    src_vocab: data/{timestamp}/example.vocab.src
+    tgt_vocab: data/{timestamp}/example.vocab.tgt
     # Prevent overwriting existing files in the folder
     overwrite: True
 
@@ -84,8 +84,8 @@ def write_train_bpe_config():
             path_tgt: data/tgt-val-bpe.txt
 
     # Vocabulary files that were just created
-    src_vocab: models/run/example.vocab.src
-    tgt_vocab: models/run/example.vocab.tgt
+    src_vocab: models/{timestamp}/example.vocab.src
+    tgt_vocab: models/{timestamp}/example.vocab.tgt
 
     # Train on a single GPU
     world_size: 1
@@ -123,5 +123,6 @@ if __name__ == "__main__":
     write_train_bpe_config()
     import os   
     import time 
-    os.makedirs('./output_log', exist_ok=True)
+    if not os.path.exists('output_log'):
+        os.makedirs('output_log', exist_ok=True)
 
