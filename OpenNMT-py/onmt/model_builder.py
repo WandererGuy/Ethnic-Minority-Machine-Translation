@@ -79,16 +79,10 @@ def build_decoder(opt, embeddings):
 
 
 def load_test_model(opt, model_path=None):
-    import torch
-    from onmt.inputters.text_dataset import TextMultiField
-
-    # Add TextMultiField to the allowed safe globals
-    torch.serialization.add_safe_globals([TextMultiField])
-
     if model_path is None:
         model_path = opt.models[0]
     checkpoint = torch.load(model_path,
-                            map_location=lambda storage, loc: storage, weights_only=False)
+                            map_location=lambda storage, loc: storage)
 
     model_opt = ArgumentParser.ckpt_model_opts(checkpoint['opt'])
     ArgumentParser.update_model_opts(model_opt)

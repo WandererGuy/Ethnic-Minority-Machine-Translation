@@ -41,7 +41,7 @@ dont need this:
 !pip install OpenNMT-py==2.3.0
 ```
 
-### things I change w.r.t original OpenNMT: (i already change for u so u dont need to do this anymore)
+### things I change w.r.t original OpenNMT: (only do this if encounter bug when translate or training)
     to enable training from pretrain<br>
     in OpenNMT-py/onmt/models/model_saver.py change (to bypass security safe)
 
