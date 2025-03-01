@@ -16,8 +16,10 @@ conda activate $first_anaconda_env
 # pip install numpy==1.25.0
 pip install fastapi uvicorn pydantic python-multipart
 conda activate $second_anaconda_env
+wget https://github.com/OpenNMT/OpenNMT-py/archive/refs/tags/2.3.0.tar.gz
+tar -zxvf 2.3.0.tar.gz
+mv OpenNMT-py-2.3.0 OpenNMT-py
 cd OpenNMT-py
 pip install -e .
 cd ..
-pip install fastapi uvicorn pydantic python-multipart
 pip install nltk

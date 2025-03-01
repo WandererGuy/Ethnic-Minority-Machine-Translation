@@ -7,6 +7,7 @@ def tokenize_file(input_file, output_file):
                 f"--model={model_name}.model",
                 "--input", input_file, 
                 "--output", output_file]
+                
     print (" ".join(command))
     # Running the subprocess with the provided command
     result = subprocess.run(command, capture_output=True, text=True)
