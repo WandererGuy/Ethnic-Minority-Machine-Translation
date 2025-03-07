@@ -6,10 +6,12 @@ source "$value"  # Adjust to your conda installation path
 
 # Set the first conda environment path and activate it
 current_dir=$(pwd)
-FIRST_CONDA_ENV_PATH="$(pwd)/env_1"
+# FIRST_CONDA_ENV_PATH="$(pwd)/env_1"
 SECOND_CONDA_ENV_PATH="$(pwd)/env_2"
-echo "Activating first conda environment: $FIRST_CONDA_ENV_PATH"
-conda activate "$FIRST_CONDA_ENV_PATH"
+# echo "Activating first conda environment: $FIRST_CONDA_ENV_PATH"
+# conda activate "$FIRST_CONDA_ENV_PATH"
+echo "Activating second conda environment: $SECOND_CONDA_ENV_PATH"
+conda activate "$SECOND_CONDA_ENV_PATH"
 
 # Run your Python scripts with delays
 echo "Running check_prepare.py..."
@@ -42,8 +44,6 @@ python 5_config.py
 echo "Sleeping for 4 seconds..."
 sleep 4
 
-echo "Activating second conda environment: $SECOND_CONDA_ENV_PATH"
-conda activate "$SECOND_CONDA_ENV_PATH"
 
 echo "Starting train.sh..."
 bash 6_train-no-bpe.sh

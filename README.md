@@ -16,31 +16,15 @@ put training target source file into ./data/target_source.txt
 
 
 # prepare env:
-## prepare env 1 
-- env_1 (before train)
+## prepare sentencepiece tokenizer (build for env 2)
 ```
-pip install nltk
-pip install numpy==1.25.0
+bash 0_build_spm.sh
 ```
-
-## prepare env 2 
-- env_2(train)
- (build OpenMNT)
+## usage: run this bash file in order
+u should run manually command in this bash file 
 ```
-!wget https://github.com/OpenNMT/OpenNMT-py/archive/refs/tags/2.3.0.tar.gz
-!tar -zxvf 2.3.0.tar.gz
-!mv OpenNMT-py-2.3.0 OpenNMT-py
+bash create_env.sh
 ```
-to use CLI command for OpenNMT-py
-```
-%cd OpenNMT-py
-!pip install -e .
-```
-dont need this:
-```
-!pip install OpenNMT-py==2.3.0
-```
-
 ### things I change w.r.t original OpenNMT: (only do this if encounter bug when translate or training)
     to enable training from pretrain<br>
     in OpenNMT-py/onmt/models/model_saver.py change (to bypass security safe)
@@ -78,17 +62,30 @@ dont need this:
             model_path = opt.models[0]
         checkpoint = torch.load(model_path,
                                 map_location=lambda storage, loc: storage, weights_only=False)
+                                
+        model_opt = ArgumentParser.ckpt_model_opts(checkpoint['opt'])
+        ArgumentParser.update_model_opts(model_opt)
+        ArgumentParser.validate_model_opts(model_opt)
+        fields = checkpoint['vocab']
+
+        # Avoid functionality on inference
+        model_opt.update_vocab = False
+
+        model = build_base_model(model_opt, fields, use_gpu(opt), checkpoint,
+                                opt.gpu)
+        if opt.fp32:
+            model.float()
+        elif opt.int8:
+            if opt.gpu >= 0:
+                raise ValueError(
+                    "Dynamic 8-bit quantization is not supported on GPU")
+            torch.quantization.quantize_dynamic(model, inplace=True)
+        model.eval()
+        model.generator.eval()
+        return fields, model, model_opt
+
     ```
 
-### prepare sentencepiece tokenizer (build for env 2)
-```
-bash 0_build_spm.sh
-```
-# usage: run this bash file in order
-u should run manually command in this bash file 
-```
-bash create_env.sh
-```
 ## training
 u should run manually command in this bash file for any raising bugs
 ```
