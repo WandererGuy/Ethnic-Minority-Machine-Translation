@@ -11,7 +11,6 @@ import shutil
 if os.path.exists("OpenNMT-py/onmt/model_builder.py"):
     os.remove("OpenNMT-py/onmt/model_builder.py")
 shutil.copy("OpenNMT_replace/model_builder.py", "OpenNMT-py/onmt")
-vscode-remote://wsl%2Bubuntu-22.04/home/manh264/code_linux/NMT_server/src/OpenNMT_replace
 def running_python(command):
     print ("************************************")
     print (" ".join(command))
