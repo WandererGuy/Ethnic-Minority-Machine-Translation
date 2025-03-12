@@ -8,5 +8,4 @@ data
 language_checkpoints
 sentencepiece
 translate_result
-*.gz
-*.tar
+OpenNMT-py
