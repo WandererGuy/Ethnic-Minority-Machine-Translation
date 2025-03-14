@@ -1,4 +1,4 @@
-# usage: translate between any 2 language using OpenNMT with little customized tokenizer
+# usage: translate between any 2 language using OpenNMT with sentencepiece tokenizer
 target: Vietnamese<br>
 source: Khmer <br>
 with result: <br>
@@ -11,29 +11,29 @@ converge at epoch 120k-140k
 https://medium.com/@manhtech264/neural-machine-translation-between-any-2-languages-part-1-74980f50e3a6
 
 # dockerfile
-U can run a demo use Docker by simple build image with Dockerfile then run the built image 
+U can run a flow of set up env via Docker by simple build image with Dockerfile then run the built image 
 from the repo
 ```
 docker build -t myapp .    
 docker run -it --name myapp_container --gpus all -p 3000:4000 myapp
 ```
 
-# EXPLAIN THE DEMO DOCKERFILE
-# prepare 
+# EXPLAIN THE DEMO DOCKERFILE 
+## prepare 
 make a folder ./data
 put training target source file into ./data/target_source.txt 
 
-# prepare env:
+## prepare env:
 ## prepare sentencepiece tokenizer (build for env 2)
 ```
 bash 0_build_spm.sh
 ```
-## usage: run this bash file in order
+### usage: run this bash file in order
 u should run manually command in this bash file 
 ```
 bash create_env.sh
 ```
-### things I change w.r.t original OpenNMT: (only do this if encounter bug when translate or training)
+#### things I change w.r.t original OpenNMT: (only do this if encounter bug when translate or training)
     to enable training from pretrain<br>
     in OpenNMT-py/onmt/models/model_saver.py change (to bypass security safe)
 
@@ -95,13 +95,13 @@ bash create_env.sh
     ```
 
 
-## training
+# training
 u should run manually command in this bash file for any raising bugs
 ```
 bash run-all-no-bpe.sh
 ```
 
-## translate (inference) for 1000 first lines in src-test-token.txt
+# translate (inference) for 1000 first lines in src-test-token.txt
 ```
 8_create_sample_translate.py
 9_0_translate-no-bpe.sh
