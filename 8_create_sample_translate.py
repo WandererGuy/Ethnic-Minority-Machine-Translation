@@ -34,3 +34,10 @@ if __name__ == "__main__":
     output_file = "data/fake-tgt-test-token.txt"
     with open(output_file, 'w', encoding='utf-8') as f:
         f.writelines(first_1000_lines)
+
+    input_file = 'data/tgt-test.txt'
+    first_1000_lines = read_first_1000_lines(input_file)
+    print(f"Read {len(first_1000_lines)} lines from {input_file}")
+    output_file = "data/fake-tgt-test.txt"
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.writelines(first_1000_lines)
