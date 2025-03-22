@@ -90,6 +90,6 @@ if __name__ == "__main__":
 
     command = ["python", "5_config.py"]
     running_python(command)
-
+    
     command = ["bash", "6_train-no-bpe.sh"]
     running_bash_file(command)

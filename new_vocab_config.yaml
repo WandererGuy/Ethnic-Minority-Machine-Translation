@@ -1,0 +1,18 @@
+# data-no-bpe.yaml
+
+    ## Where the samples will be written
+    save_data: data/2025-03-17-14-10/example
+    ## Where the vocab(s) will be written
+    src_vocab: data/2025-03-17-14-10/example.vocab.src
+    tgt_vocab: data/2025-03-17-14-10/example.vocab.tgt
+    # Prevent overwriting existing files in the folder
+    overwrite: True
+
+    # Corpus opts:
+    data:
+        corpus_1:
+            path_src: data/src-train-token.txt
+            path_tgt: data/tgt-train-token.txt
+        valid:
+            path_src: data/src-val-token.txt
+            path_tgt: data/tgt-val-token.txt

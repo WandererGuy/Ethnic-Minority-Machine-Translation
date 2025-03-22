@@ -36,6 +36,10 @@ RUN pip install fastapi uvicorn pydantic python-multipart
 RUN mkdir data
 RUN cp target_source/target_source_ede.txt data
 RUN mv data/target_source_ede.txt data/target_source.txt
+RUN pip install OpenNMT-tf
+RUN pip install tensorflow
+RUN pip install 'keras<3.0.0' mediapipe-model-maker
+
 # Make the script executable
 # RUN chmod +x /app/script.sh
 RUN ln -s /usr/bin/python3 /usr/bin/python
