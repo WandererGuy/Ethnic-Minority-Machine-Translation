@@ -1,7 +1,7 @@
 # data-no-bpe.yaml
 
     ## Where the samples will be written
-    save_data: models/2025-03-22-15-03/example
+    save_data: models/2025-03-25-09-44/example
     ## Where the vocab(s) will be written
     src_vocab: vocab/example.vocab.src
     tgt_vocab: vocab/example.vocab.tgt
@@ -19,7 +19,7 @@
 
 
     # Where to save the checkpoints
-    save_model: models/2025-03-22-15-03/model
+    save_model: models/2025-03-25-09-44/model
     save_checkpoint_steps: 10000
     valid_steps: 10000
     train_steps: 200000
@@ -27,7 +27,7 @@
     # Batching
     bucket_size: 262144
     world_size: 4
-    gpu_ranks: [0, 1, 2, 3]
+    
     num_workers: 2
     batch_type: "tokens"
     batch_size: 4096
