@@ -1,3 +1,6 @@
+# update:
+this repository has been updated in new version, visit https://github.com/WandererGuy/Ethnic-Minority-Machine-Translation-API
+
 # demo 
 - i have prepare a notebook demo to translate Vietnamese to English (to demonstrate that this model can performe well on high resource language like Vietnam and English)
 - Demo usage by simply run notebook and see result in this repo : <br>[Vietnam_to_English_Translation_Demo.ipynb](https://github.com/WandererGuy/Ethnic-Minority-Machine-Translation-API/blob/main/Vietnam_to_English_Translation_Demo.ipynb)
